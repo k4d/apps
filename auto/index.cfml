@@ -4,9 +4,6 @@
 
 <cfscript>
 
-	// writeDump( getApplicationMetadata() );
-	// writeDump( application.GetApplicationSettings() );
-
 	//	Code here
 
 </cfscript>
