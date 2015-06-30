@@ -27,12 +27,10 @@ component
 		arrayInsertAt( local.jsonData.fields, 1, "id" );
 		arrayInsertAt( local.jsonData.type, 1, "Integer" );
 
-		function setID ( value, index )
-		{
+		arrayEach( local.jsonData.data, function ( value, index ){
 			arrayInsertAt( value, 1, index );
 			arraySet( jsonData.data, index, index, value );
-		}
-		arrayEach( local.jsonData.data, setID );
+		});
 
 		local.fields = arrayToList( local.jsonData.fields, "," );
 		local.type = arrayToList( local.jsonData.type, "," );
@@ -65,6 +63,7 @@ component
 			}
 		);
 		local.response["recordcount"] = application.data.recordcount;
+		local.response["recordreturn"] = local.query.recordcount;
 
 		for ( row in local.query )
 		{
@@ -78,6 +77,7 @@ component
 		restPath="/items/{id}"
 	{
 		local.response = {};
+		local.response["data"] = {};
 		local.query = queryExecute("
 			select *
 			from application.data
@@ -93,9 +93,11 @@ component
 				dbtype="query"
 			}
 		);
+		local.response["recordreturn"] = local.query.recordcount;
+
 		for ( row in local.query )
 		{
-			local.response = row;
+			local.response["data"] = row;
 		}
 		return local.response;
 	}
@@ -111,13 +113,13 @@ component
 		httpMethod="PUT"
 		restPath="/items/{id}"
 	{
-
+		//	Code here
 	}
 
 	remote void function deleteItem ( required numeric id restArgSource="Path" )
 		httpMethod="DELETE"
 		restPath="/items/{id}"
 	{
-
+		//	Code here
 	}
 }
