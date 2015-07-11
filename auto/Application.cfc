@@ -1,5 +1,5 @@
 component
-	output="true"
+	output="false"
 {
 	pageencoding "utf-8";
 
@@ -7,13 +7,18 @@ component
 
 	import Service;
 
-	/*	Application variables		------------------------------ */
+	/*	Component variables			------------------------------ */
 
-	this.name = "auto";
-	this.applicationTimeout = createTimeSpan(0,1,0,0);
+	/*	Application settings		-------------------- */
 
-	this.restsettings.cfclocation = "./";
-	this.restsettings.skipcfcwitherror = true;
+	this.name						= "auto";
+	this.applicationTimeout			= createTimeSpan( 0, 1, 0, 0 );
+	this.invokeImplicitAccessor		= true;
+
+	/*	REST settings				-------------------- */
+
+	this.restSettings.cfcLocation		= "./";
+	this.restSettings.skipCFCWithError	= true;
 
 	/*	Application functions		------------------------------ */
 
@@ -22,11 +27,6 @@ component
 		initApp();
 
 		return true;
-	}
-
-	public void function onSessionStart ()
-	{
-		// code here
 	}
 
 	public boolean function onRequestStart ( required string targetPage )
@@ -41,26 +41,17 @@ component
 		include arguments.targetPage;
 	}
 
-	public void function onRequestEnd ()
-	{
-		// code here
-	}
-
-	public void function onApplicationEnd ( struct appScope=structNew() )
-	{
-		// code here
-	}
-
 	/*	Other functions				------------------------------ */
 
 	private void function initApp () {
 
-		application.start = now();
+		application.APP = {};
+		application.APP.start = now();
 
 		application.Service = new Service();
-		application.Service.initialize();
+		application.Service.init();
 
-		restInitApplication( getDirectoryFromPath(getCurrentTemplatePath()), this.name, {host="apps"} );
+		restInitApplication( getDirectoryFromPath( getCurrentTemplatePath() ), this.name, {host="apps"} );
 	}
 
 	private void function reInitApp () {

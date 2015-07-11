@@ -1,6 +1,6 @@
 # apps
 
-### Micro APPs
+## Example Micro Application
 
 #### Auto
 

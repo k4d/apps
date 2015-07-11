@@ -6,22 +6,22 @@ component
 {
 	pageencoding "utf-8";
 
-	url.returnFormat="JSON";
+	url.returnFormat = "JSON";
 
-	/*	Initialize function			------------------------------ */
+	/*	Initialize					------------------------------ */
 
-	public any function initialize ()
+	public any function init ()
 	{
 		application.data = createData();
 
 		return this;
 	}
 
-	/*	Private functions			------------------------------ */
+	/*	CREATE DATA					------------------------------ */
 
 	private query function createData ()
 	{
-		local.jsonFile = fileRead( expandPath( "json/data.json" ) );
+		local.jsonFile = fileRead( expandPath( "data/data.json" ) );
 		local.jsonData = deserializeJSON( local.jsonFile );
 
 		arrayInsertAt( local.jsonData.fields, 1, "id" );
@@ -45,11 +45,22 @@ component
 		return local.response;
 	}
 
-	/*	Remote functions			------------------------------ */
+	/*	CREATE 						------------------------------ */
+
+	remote void function createItem ( required string args restArgSource="Form" )
+		httpMethod="POST"
+		restPath="records"
+	{
+		queryAddRow( application.data, deserializeJSON( arguments.args ) );
+	}
+
+	/*	READ 						------------------------------ */
+
+	/*	Get All						-------------------- */
 
 	remote any function getItems ()
 		httpMethod="GET"
-		restPath="items"
+		restPath="records"
 	{
 		local.response = {};
 		local.response["data"] = [];
@@ -72,9 +83,11 @@ component
 		return local.response;
 	}
 
+	/*	Get One						-------------------- */
+
 	remote any function getItem ( required numeric id restArgSource="Path" )
 		httpMethod="GET"
-		restPath="/items/{id}"
+		restPath="records/{id}"
 	{
 		local.response = {};
 		local.response["data"] = {};
@@ -102,23 +115,20 @@ component
 		return local.response;
 	}
 
-	remote void function createItem ( required string args restArgSource="Form" )
-		httpMethod="POST"
-		restPath="items"
-	{
-		queryAddRow( application.data, deserializeJSON( arguments.args ) );
-	}
+	/*	UPDATE 						------------------------------ */
 
 	remote void function updateItem ( required numeric id restArgSource="Path", required string args restArgSource="Header" )
 		httpMethod="PUT"
-		restPath="/items/{id}"
+		restPath="records/{id}"
 	{
 		//	Code here
 	}
 
+	/*	DELETE 						------------------------------ */
+
 	remote void function deleteItem ( required numeric id restArgSource="Path" )
 		httpMethod="DELETE"
-		restPath="/items/{id}"
+		restPath="records/{id}"
 	{
 		//	Code here
 	}
