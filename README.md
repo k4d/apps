@@ -2,7 +2,7 @@
 
 Examples Micro Applications.
 
-#### Auto
+#### Cars
 
 Example of REST services with data about cars.
 

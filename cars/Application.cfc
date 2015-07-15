@@ -11,7 +11,7 @@ component
 
 	/*	Application settings		-------------------- */
 
-	this.name						= "auto";
+	this.name						= "cars";
 	this.applicationTimeout			= createTimeSpan( 0, 1, 0, 0 );
 	this.invokeImplicitAccessor		= true;
 
@@ -59,5 +59,7 @@ component
 		applicationStop();
 
 		initApp();
+
+		location( url="./main.cfml" );
 	}
 }

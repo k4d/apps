@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Cars">
+<head>
+	<meta charset="UTF-8">
+	<title>Cars</title>
+	<link rel="stylesheet" href="http://cdn/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/cars/app/css/app.css">
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#/">CARS</a>
+			<p class="navbar-text">Example of REST services with data about cars</p>
+		</div>
+		<div class="collapse navbar-collapse">
+			<form class="navbar-form navbar-right" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search" ng-model="search">
+				</div>
+			</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container" ng-view></div>
+
+	<script src="http://cdn/angular/angular.min.js"></script>
+	<script src="http://cdn/angular-route/angular-route.min.js"></script>
+	<script src="/cars/app/js/app.ng.js"></script>
+
+</body>
+</html>

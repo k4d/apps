@@ -1,0 +1,44 @@
+<ol class="breadcrumb">
+	<li><a href="#/">Cars</a></li>
+	<li>{{ data.brand }}</li>
+	<li class="active">{{ data.model }}</li>
+</ol>
+
+<div class="page-header">
+	<h1>{{ data.brand }} {{ data.model }}</h1>
+</div>
+
+<div class="panel panel-default">
+	<table class="table">
+		<tbody>
+			<tr>
+				<th scope="row">Model</th>
+				<td>{{ data.brand }} {{ data.model }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Classification</th>
+				<td>{{ data.classification }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Classification</th>
+				<td>{{ data.classification }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Transmission</th>
+				<td>{{ data.transmission }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Fuel</th>
+				<td>{{ data.fuel }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Year</th>
+				<td>{{ data.year }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Price</th>
+				<td>{{ data.price | currency: '$' :0 }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
